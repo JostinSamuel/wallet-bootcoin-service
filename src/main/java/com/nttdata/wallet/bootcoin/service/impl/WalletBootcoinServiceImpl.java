@@ -25,7 +25,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class WalletBootcoinServiceImpl implements WalletBootcoinService {
 	
-	@Value("${api.kafka-uri.customer-topic}")
+	@Value("${api.kafka-uri.customer-topic-bootcoin}")
 	String customerTopic;
 
 	@Autowired

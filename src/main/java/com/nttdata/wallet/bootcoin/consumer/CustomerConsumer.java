@@ -15,13 +15,13 @@ import lombok.extern.log4j.Log4j2;
 @Component
 public class CustomerConsumer {
 	
-	@Value("${api.kafka-uri.customer-topic-respose}")
+	@Value("${api.kafka-uri.customer-topic-respose-bootcoin}")
 	String customerTopicSave;
 	
 	@Autowired
 	WalletBootcoinService walletBootcoinService;
 	
-	@KafkaListener(topics = "${api.kafka-uri.customer-topic-respose}", groupId = "group_id")
+	@KafkaListener(topics = "${api.kafka-uri.customer-topic-respose-bootcoin}", groupId = "group_id")
 	public void customerConsumer(CustomerWalletBootcoin customerWalletBootcoin) {
 		log.info("customerConsumer["+customerTopicSave+"]:" + customerWalletBootcoin.toString());		
 		WalletBootcoin walletBootcoin=this.walletBootcoinService.findById(customerWalletBootcoin.getIdCustomer()).blockOptional().get();

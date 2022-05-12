@@ -26,9 +26,4 @@ public interface WalletBootcoinService {
 	/** Metodo que se encarga de registrar un monedero */
 	Mono<WalletResponse> registerWallet(WalletBootcoin walletBootcoin);
 
-	/** Methodo que se encarga de asociar una cuenta bancaria al monedero */
-	//Mono<CardResponse> associateYourWallet(CardWallet cardWallet);
-
-	/** Methodo que se encarga de iniciar una transferencia */
-	//Mono<MovementWalletResponse> walletTransaction(MovementWalletResponse movementWalletResponse);
 }
