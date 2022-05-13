@@ -18,13 +18,14 @@ import com.nttdata.wallet.bootcoin.entity.WalletBootcoin;
 import com.nttdata.wallet.bootcoin.model.WalletResponse;
 import com.nttdata.wallet.bootcoin.service.WalletBootcoinService;
 
+
 import lombok.extern.log4j.Log4j2;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Log4j2
 @RestController
-@RequestMapping("/api/v1/wallet/bootcoin")
+@RequestMapping("/api/v1/bootcoin")
 public class WalletBootcoinController {
 
 	@Autowired
@@ -59,13 +60,13 @@ public class WalletBootcoinController {
 		}).defaultIfEmpty(ResponseEntity.noContent().build());
 	}
 
-	@DeleteMapping("/{idWalletBootcoin}")
-	public Mono<ResponseEntity<Void>> delete(@PathVariable(name = "idWalletBootcoin") Long idWalletBootcoin) {
-		Mono<WalletBootcoin> _wallet = walletBootcoinService.findById(idWalletBootcoin);
+	@DeleteMapping("/{idWalletBootcoinBootcoin}")
+	public Mono<ResponseEntity<Void>> delete(@PathVariable(name = "idWalletBootcoinBootcoin") Long idWalletBootcoinBootcoin) {
+		Mono<WalletBootcoin> _wallet = walletBootcoinService.findById(idWalletBootcoinBootcoin);
 		_wallet.subscribe();
 		WalletBootcoin wallet = _wallet.toFuture().join();
 		if (wallet != null) {
-			return walletBootcoinService.delete(idWalletBootcoin).map(r -> ResponseEntity.ok().<Void>build());
+			return walletBootcoinService.delete(idWalletBootcoinBootcoin).map(r -> ResponseEntity.ok().<Void>build());
 		} else {
 			return Mono.just(ResponseEntity.noContent().build());
 		}
@@ -78,6 +79,14 @@ public class WalletBootcoinController {
 					log.info("Error:" + e.getMessage());
 					return Mono.just(ResponseEntity.badRequest().build());
 				});
+	}
+	
+	@GetMapping("/{idWalletBootcoin}")
+	public Mono<ResponseEntity<WalletBootcoin>> findById(@PathVariable(name = "idWalletBootcoin") Long idWalletBootcoin) {
+		return walletBootcoinService.findById(idWalletBootcoin).map(wallet -> ResponseEntity.ok().body(wallet)).onErrorResume(e -> {
+			log.info("Error:" + e.getMessage());
+			return Mono.just(ResponseEntity.badRequest().build());
+		}).defaultIfEmpty(ResponseEntity.noContent().build());
 	}
 
 }

@@ -12,8 +12,8 @@
 	<artifactId>wallet-bootcoin-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>wallet-bootcoin-service</name>
-	<description>Bootcamp Reports Account Service</description>
-		<properties>
+	<description>Bootcamp - Monedero Bootcoin</description>
+	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.1</spring-cloud.version>
 	</properties>
